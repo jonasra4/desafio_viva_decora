@@ -5,8 +5,8 @@ class TreeNode:
         self.parent = None
 
         self.extension = None
-        self.size = 0
-        self.lines = 0
+        self.size = None
+        self.lines = None
 
     def get_level(self):
         level = 0
@@ -17,19 +17,24 @@ class TreeNode:
         return level
 
     def convert_to_bytes(self):
-        num_unity = self.size.split(' ')
+        try:
+            num_unity = self.size.split(' ')
         
-        num = float(num_unity[0])
-        unity = num_unity[1]
+            num = float(num_unity[0])
+            unity = num_unity[1]
 
-        if unity == 'Bytes' or unity == 'Byte':
-            self.size = num
-        elif unity == 'KB':
-            self.size = 1000 * num
-        elif unity == 'MB':
-            self.size = 1000000 * num
-        elif unity == 'GB':
-            self.size = 1000000000 * num
+            if unity == 'Bytes' or unity == 'Byte':
+                self.size = num
+            elif unity == 'KB':
+                self.size = 1000 * num
+            elif unity == 'MB':
+                self.size = 1000000 * num
+            elif unity == 'GB':
+                self.size = 1000000000 * num
+        except:
+            print(self.size, type(self.size))
+            self.size = 0
+        
 
     def convert_to_extension(self):
         ext = self.data.split('.')

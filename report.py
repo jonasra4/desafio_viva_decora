@@ -1,13 +1,16 @@
-import requests
-import tree
-from bs4 import BeautifulSoup
 import re
+import tree
+import requests
+import threading
 from tabulate import tabulate
+import concurrent.futures
+from bs4 import BeautifulSoup
+import time
 
 class Report:
     def __init__(self, project_name):
         self.project_name = project_name
-        self.url = 'https://github.com/' + project_name + '/tree/master'
+        self.url = f'https://github.com/{project_name}/tree/master'
         
         self.total_lines = 0
         self.total_bytes = 0
@@ -21,19 +24,26 @@ class Report:
     def scraping_lines_size(self, navigation):
         new_url = self.url + navigation
         page = requests.get(new_url)
-        soup = BeautifulSoup(page.text, 'html.parser')
-        lines_size = soup.find(class_='text-mono f6 flex-auto pr-3 flex-order-2 flex-md-order-1 mt-2 mt-md-0')
-        pattern = r"[0-9.]+[ ][A-Za-z]*"
-    
-        try:
-            regex_lines_size = re.findall(pattern, lines_size.text)
-            lines = int(regex_lines_size[0].split(' ')[0])
-            size = regex_lines_size[2]
-            return lines, size
-        except:
-            regex_lines_size = re.findall(pattern, lines_size.text)
-            size = regex_lines_size[0]
-            return 0, size
+        print(navigation)
+        # time.sleep(5)
+
+        if page.status_code == 200:
+            soup = BeautifulSoup(page.text, 'html.parser')
+            lines_size = soup.find(class_='text-mono f6 flex-auto pr-3 flex-order-2 flex-md-order-1 mt-2 mt-md-0')
+            pattern = r"[0-9.]+[ ][A-Za-z]*"
+
+            try:
+                regex_lines_size = re.findall(pattern, lines_size.text)
+                lines = int(regex_lines_size[0].split(' ')[0])
+                size = regex_lines_size[2]
+                return lines, size
+            except:
+                regex_lines_size = re.findall(pattern, lines_size.text)
+                size = regex_lines_size[0]
+                return 0, size
+        else:
+            print(page.status_code, new_url)
+            return 0, 112312313
 
     def scraping_project(self, navigation, node):
         new_url = self.url + navigation
@@ -52,11 +62,17 @@ class Report:
                 new_navigation = navigation + '/' + nome
                 new_node = tree.TreeNode(nome)
                 current_node.add_child( new_node  )
-                self.scraping_project(new_navigation, new_node)
+                # self.scraping_project(new_navigation, new_node)
+                print(new_navigation)
+                threading.Thread(target=self.scraping_project, args=(new_navigation,new_node, )).start()
             else:
                 new_navigation = navigation + '/' + nome
                 new_node = tree.TreeNode(nome)
-                new_node.lines, new_node.size = self.scraping_lines_size(new_navigation)
+                # new_node.lines, new_node.size = self.scraping_lines_size(new_navigation)
+                with concurrent.futures.ThreadPoolExecutor() as executor:
+                    future = executor.submit(self.scraping_lines_size, new_navigation)
+                    new_node.lines, new_node.size = future.result()   
+                            
                 new_node.convert_to_extension()
                 new_node.convert_to_bytes()
                 current_node.add_child(new_node)
@@ -67,16 +83,16 @@ class Report:
         prefix = spaces + "|__ " if node.parent else ""
         
         if node.extension is not None:
-            self.project_string += prefix + node.data + " (" + str(node.lines)+ " linhas)\n"
+            self.project_string += f'{prefix + node.data} ({node.lines} lines)\n'
         else:
-            self.project_string += prefix + "[" + node.data + "]\n"
+            self.project_string += f'{prefix}[{node.data}]\n'
 
         if node.children:
             for child in node.children:
                 self.structure_to_string(child) 
 
     def read_project(self):
-        root = tree.TreeNode("Project " + self.project_name)
+        root = tree.TreeNode(f'Project {self.project_name}')
         self.project_structure = self.scraping_project('', root )
 
     def count_total_lines_bytes(self):
@@ -101,13 +117,17 @@ class Report:
         if node.children:
             for child in node.children:
                 self.count_total_lines_bytes_by_extension(child)
+      
+    def table_to_string(self):   
 
-    def table_to_string(self):
         headers = ['Extension', 'Lines', 'Bytes']
         new_table = []
 
         for key, value in self.table.items():
-            new_table.append([key, value[0], value[1]])
+            line_count = f'{value[0]} ({ int(100 * value[0] / self.total_lines)}%)'
+            byte_count = f'{int(value[1])} ({ int(100 * value[1] / self.total_bytes)}%)'
+
+            new_table.append([key, line_count, byte_count])
         
         self.table_string = tabulate(new_table, headers=headers, tablefmt="github")
 
@@ -121,9 +141,10 @@ class Report:
     def save_report(self):
         file = open(self.project_name.replace('/','_') + '.txt',"w")
 
-        file.write('Path: ' + self.project_name + '\n') 
-        file.write('Lines: ' + str(self.total_lines) + '\n') 
-        file.write('Bytes: ' + str(self.total_bytes) + '\n\n\n\n') 
+        file.write(f'Path: {self.project_name}\n') 
+        file.write(f'Lines: {self.total_lines}\n') 
+        file.write(f'Bytes: {self.total_bytes}\n\n\n') 
+
         file.write(self.table_string + '\n\n\n')
         file.write(self.project_string)
         
