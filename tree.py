@@ -8,7 +8,6 @@ class TreeNode:
         self.size = 0
         self.lines = 0
 
-
     def get_level(self):
         level = 0
         p = self.parent
@@ -16,19 +15,6 @@ class TreeNode:
             level += 1
             p = p.parent
         return level
-
-    def print_tree(self):
-        spaces = '|  ' * (self.get_level()-1)
-        prefix = spaces + "|__ " if self.parent else ""
-        
-        if self.extension is not None:
-            print(prefix + self.data + " (" + str(self.lines)+ " linhas)  " + str(self.size) + "  "  + self.extension)
-        else:
-            print(prefix + "[" + self.data + "]")
-
-        if self.children:
-            for child in self.children:
-                child.print_tree()
 
     def convert_to_bytes(self):
         num_unity = self.size.split(' ')
@@ -55,18 +41,3 @@ class TreeNode:
     def add_child(self, child):
         child.parent = self
         self.children.append(child)
-    # {
-    #     js = [lines, bytes ]
-    # }
-    rept = {}
-    def report(self):
-        if self.extension:
-            if self.extension in self.rept:
-                self.rept[self.extension][0] += self.lines
-                self.rept[self.extension][1] += self.size
-            else:
-                self.rept[self.extension] = [self.lines, self.size]
-                s
-        if self.children:
-            for child in self.children:
-                child.report()

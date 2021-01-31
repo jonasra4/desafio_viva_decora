@@ -1,0 +1,8 @@
+colocar porcentagem
+ordenar tabela pelo numero de linhas
+melhorar nome das variaveis em scraping_project
+modularizar funcao scraping_project
+colocar strings no padrao f'{}
+
+remover o key em count_total_lines_bytes
+tentar melhroar performance
