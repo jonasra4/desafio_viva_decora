@@ -3,7 +3,7 @@ class TreeNode:
         self.data = data
         self.children = []
         self.parent = None
-
+        self.path = None
         self.extension = None
         self.size = None
         self.lines = None
