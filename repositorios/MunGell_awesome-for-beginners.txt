@@ -1,0 +1,21 @@
+Path: MunGell/awesome-for-beginners
+Lines: 393
+Bytes: 86627
+
+
+| Extension   | Lines     | Bytes       |
+|-------------|-----------|-------------|
+| md          | 387 (98%) | 47306 (54%) |
+| yml         | 6 (1%)    | 121 (0%)    |
+| jpg         | 0 (0%)    | 39200 (45%) |
+
+
+[Project MunGell/awesome-for-beginners]
+|__ [.github]
+|  |__ FUNDING.yml (3 lines)
+|  |__ pull_request_template.md (17 lines)
+|  |__ stale.yml (3 lines)
+|__ [assets]
+|  |__ himnadram-dark.jpg (0 lines)
+|__ CONTRIBUTING.md (25 lines)
+|__ README.md (345 lines)

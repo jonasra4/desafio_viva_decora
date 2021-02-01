@@ -1,0 +1,143 @@
+Path: jonasra4/GGJ19
+Lines: 19532
+Bytes: 7866566
+
+
+| Extension   | Lines       | Bytes         |
+|-------------|-------------|---------------|
+| prefab      | 15166 (77%) | 364280 (4%)   |
+| unity       | 1564 (8%)   | 44700 (0%)    |
+| dwlt        | 895 (4%)    | 21600 (0%)    |
+| mat         | 684 (3%)    | 17910 (0%)    |
+| meta        | 550 (2%)    | 12172 (0%)    |
+| cs          | 472 (2%)    | 10821 (0%)    |
+| info        | 182 (0%)    | 36651 (0%)    |
+| xml         | 10 (0%)     | 774 (0%)      |
+| txt         | 7 (0%)      | 151 (0%)      |
+| <outros>    | 1 (0%)      | 7151160 (90%) |
+| md          | 1 (0%)      | 7 (0%)        |
+| jpg         | 0 (0%)      | 34100 (0%)    |
+| dll         | 0 (0%)      | 155500 (1%)   |
+| asset       | 0 (0%)      | 16740 (0%)    |
+
+
+[Project jonasra4/GGJ19]
+|__ [ggj 1]
+|  |__ [Assets]
+|  |  |__ [Scenes]
+|  |  |  |__ SampleScene.unity (1564 lines)
+|  |  |  |__ SampleScene.unity.meta (7 lines)
+|  |  |__ [imagens]
+|  |  |  |__ [Materials]
+|  |  |  |  |__ carne.mat (76 lines)
+|  |  |  |  |__ carne.mat.meta (8 lines)
+|  |  |  |  |__ pizza.mat (76 lines)
+|  |  |  |  |__ pizza.mat.meta (8 lines)
+|  |  |  |  |__ salmao.mat (76 lines)
+|  |  |  |  |__ salmao.mat.meta (8 lines)
+|  |  |  |__ Materials.meta (8 lines)
+|  |  |  |__ carne.jpg (0 lines)
+|  |  |  |__ carne.jpg.meta (86 lines)
+|  |  |  |__ pizza.jpg (0 lines)
+|  |  |  |__ pizza.jpg.meta (86 lines)
+|  |  |  |__ salmao.jpg (0 lines)
+|  |  |  |__ salmao.jpg.meta (86 lines)
+|  |  |__ [materias]
+|  |  |  |__ amarelo.mat (76 lines)
+|  |  |  |__ amarelo.mat.meta (8 lines)
+|  |  |  |__ azul.mat (76 lines)
+|  |  |  |__ azul.mat.meta (8 lines)
+|  |  |  |__ marrom.mat (76 lines)
+|  |  |  |__ marrom.mat.meta (8 lines)
+|  |  |  |__ red.mat (76 lines)
+|  |  |  |__ red.mat.meta (8 lines)
+|  |  |  |__ salmon.mat (76 lines)
+|  |  |  |__ salmon.mat.meta (8 lines)
+|  |  |  |__ verde.mat (76 lines)
+|  |  |  |__ verde.mat.meta (8 lines)
+|  |  |__ [prefabs 1]
+|  |  |  |__ BoxMeat.prefab (198 lines)
+|  |  |  |__ BoxMeat.prefab.meta (8 lines)
+|  |  |  |__ cat1.prefab (99 lines)
+|  |  |  |__ cat1.prefab.meta (8 lines)
+|  |  |  |__ cat2.prefab (99 lines)
+|  |  |  |__ cat2.prefab.meta (8 lines)
+|  |  |  |__ cat3.prefab (99 lines)
+|  |  |  |__ cat3.prefab.meta (8 lines)
+|  |  |__ [prefabs]
+|  |  |  |__ BoxMeat.prefab (4792 lines)
+|  |  |  |__ BoxMeat.prefab.meta (8 lines)
+|  |  |  |__ BoxPizza.prefab (4791 lines)
+|  |  |  |__ BoxPizza.prefab.meta (8 lines)
+|  |  |  |__ BoxSalmao.prefab (4791 lines)
+|  |  |  |__ BoxSalmao.prefab.meta (8 lines)
+|  |  |  |__ cat1.prefab (99 lines)
+|  |  |  |__ cat1.prefab.meta (8 lines)
+|  |  |  |__ cat2.prefab (99 lines)
+|  |  |  |__ cat2.prefab.meta (8 lines)
+|  |  |  |__ cat3.prefab (99 lines)
+|  |  |  |__ cat3.prefab.meta (8 lines)
+|  |  |__ [scripts]
+|  |  |  |__ CatGenerator.cs (20 lines)
+|  |  |  |__ CatGenerator.cs.meta (11 lines)
+|  |  |  |__ Esfregao.cs (15 lines)
+|  |  |  |__ Esfregao.cs.meta (11 lines)
+|  |  |  |__ Gun.cs (57 lines)
+|  |  |  |__ Gun.cs.meta (11 lines)
+|  |  |  |__ Item.cs (20 lines)
+|  |  |  |__ Item.cs.meta (11 lines)
+|  |  |  |__ Timee.cs (70 lines)
+|  |  |  |__ Timee.cs.meta (11 lines)
+|  |  |  |__ esfrega.cs (46 lines)
+|  |  |  |__ esfrega.cs.meta (11 lines)
+|  |  |__ Scenes.meta (8 lines)
+|  |  |__ imagens.meta (8 lines)
+|  |  |__ materias.meta (8 lines)
+|  |  |__ pa.cs (16 lines)
+|  |  |__ pa.cs.meta (11 lines)
+|  |  |__ prefabs 1.meta (8 lines)
+|  |  |__ prefabs.meta (8 lines)
+|  |  |__ scripts.meta (8 lines)
+|  |__ [Library]
+|  |  |__ [FacebookSDK]
+|  |  |  |__ Facebook.Unity.Arcade.dll (0 lines)
+|  |  |  |__ Facebook.Unity.Settings.dll (0 lines)
+|  |  |  |__ Facebook.Unity.dll (0 lines)
+|  |  |  |__ FacebookNamedPipeClient.dll (0 lines)
+|  |  |  |__ ivy.xml (10 lines)
+|  |  |  |__ version.txt (1 lines)
+|  |  |__ [metadata/00]
+|  |  |  |__ 00000000000000001000000000000000 (0 lines)
+|  |  |  |__ 00000000000000001000000000000000.info (26 lines)
+|  |  |  |__ 00000000000000002000000000000000 (0 lines)
+|  |  |  |__ 00000000000000002000000000000000.info (26 lines)
+|  |  |  |__ 00000000000000003000000000000000 (0 lines)
+|  |  |  |__ 00000000000000003000000000000000.info (26 lines)
+|  |  |  |__ 00000000000000004000000000000000 (0 lines)
+|  |  |  |__ 00000000000000004000000000000000.info (26 lines)
+|  |  |  |__ 00000000000000004100000000000000 (0 lines)
+|  |  |  |__ 00000000000000004100000000000000.info (26 lines)
+|  |  |  |__ 00000000000000005000000000000000 (0 lines)
+|  |  |  |__ 00000000000000005000000000000000.info (0 lines)
+|  |  |  |__ 00000000000000005100000000000000 (0 lines)
+|  |  |  |__ 00000000000000005100000000000000.info (26 lines)
+|  |  |  |__ 00000000000000006000000000000000 (0 lines)
+|  |  |  |__ 00000000000000006000000000000000.info (26 lines)
+|  |  |__ AnnotationManager (0 lines)
+|  |  |__ AssetImportState (1 lines)
+|  |  |__ BuildSettings.asset (0 lines)
+|  |  |__ CurrentLayout.dwlt (895 lines)
+|  |  |__ EditorUserBuildSettings.asset (0 lines)
+|  |  |__ EditorUserSettings.asset (0 lines)
+|  |  |__ InspectorExpandedItems.asset (0 lines)
+|  |  |__ LastSceneManagerSetup.txt (4 lines)
+|  |  |__ LibraryFormatVersion.txt (2 lines)
+|  |  |__ assetDatabase3 (0 lines)
+|  |  |__ expandedItems (0 lines)
+|__ CatGenerator.cs (20 lines)
+|__ Esfregao.cs (15 lines)
+|__ Gun.cs (57 lines)
+|__ Item.cs (20 lines)
+|__ README.md (1 lines)
+|__ Timee.cs (70 lines)
+|__ esfrega.cs (46 lines)

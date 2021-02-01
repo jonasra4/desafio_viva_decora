@@ -1,0 +1,25 @@
+Path: marcelodolza/iziModal
+Lines: 2946
+Bytes: 262278
+
+
+| Extension   | Lines      | Bytes        |
+|-------------|------------|--------------|
+| js          | 1509 (51%) | 71600 (27%)  |
+| css         | 1105 (37%) | 176200 (67%) |
+| <outros>    | 201 (6%)   | 11100 (4%)   |
+| json        | 72 (2%)    | 1528 (0%)    |
+| md          | 59 (2%)    | 1850 (0%)    |
+
+
+[Project marcelodolza/iziModal]
+|__ [css]
+|  |__ iziModal.css (1099 lines)
+|  |__ iziModal.min.css (6 lines)
+|__ [js]
+|  |__ iziModal.js (1503 lines)
+|  |__ iziModal.min.js (6 lines)
+|__ LICENSE (201 lines)
+|__ README.md (59 lines)
+|__ bower.json (38 lines)
+|__ package.json (34 lines)
