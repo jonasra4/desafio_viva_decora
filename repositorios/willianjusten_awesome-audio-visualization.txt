@@ -1,0 +1,24 @@
+Path: willianjusten/awesome-audio-visualization
+Lines: 413
+Bytes: 128529
+
+
+| Extension   | Lines     | Bytes       |
+|-------------|-----------|-------------|
+| <outros>    | 88 (21%)  | 1548 (1%)   |
+| md          | 306 (74%) | 28920 (22%) |
+| lock        | 15 (3%)   | 188 (0%)    |
+| sh          | 4 (0%)    | 373 (0%)    |
+| gif         | 0 (0%)    | 97500 (75%) |
+
+
+[Project willianjusten/awesome-audio-visualization]
+|__ .editorconfig (14 lines)
+|__ .gitignore (54 lines)
+|__ .travis.yml (17 lines)
+|__ Contributing.md (15 lines)
+|__ Gemfile (3 lines)
+|__ Gemfile.lock (15 lines)
+|__ Readme.md (291 lines)
+|__ ci_script.sh (4 lines)
+|__ logo-aav.gif (0 lines)

@@ -4,7 +4,6 @@ jonasra4/Unity-Controller-Scenes
 jonasra4/GGJ19
 jonasra4/Renale
 jonasra4/background-test
-jonasra4/GGJ19
 camilatigre/listamaravilhosaopensource
 MunGell/awesome-for-beginners
 willianjusten/awesome-audio-visualization

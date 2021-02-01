@@ -113,12 +113,9 @@ class Report:
                     node.convert_to_bytes()
 
             else:
-                # print("tentando denovo {navigation}")
-                # time.sleep(10)
-                # self.scraping_lines_size(navigation)
                 print(page.status_code, node.path)
                 node.lines = 0
-                node.size = 24234243
+                node.size = 0
 
         if node.children:
             for child in node.children:

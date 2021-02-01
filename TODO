@@ -3,8 +3,4 @@ ordenar tabela pelo numero de linhas
 melhorar nome das variaveis em scraping_project
 modularizar funcao scraping_project
 
-remover o key em count_total_lines_bytes
-tentar melhroar performance
-colocar os txt dentro de uma pasta
-criar aquivo de entrada
 vefiricar se a requisicao deu certo para todos os casos inclusice se o projeto é publico

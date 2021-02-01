@@ -1,0 +1,23 @@
+Path: jonasra4/background-test
+Lines: 175
+Bytes: 3062139
+
+
+| Extension   | Lines     | Bytes         |
+|-------------|-----------|---------------|
+| png         | 0 (0%)    | 1852000 (60%) |
+| jpg         | 0 (0%)    | 1204000 (39%) |
+| html        | 135 (77%) | 5200 (0%)     |
+| css         | 40 (22%)  | 939 (0%)      |
+
+
+[Project jonasra4/background-test]
+|__ [img]
+|  |__ bg-tratamento-mobi.png (0 lines)
+|  |__ bg-tratamentos.jpg (0 lines)
+|  |__ bg1.jpg (0 lines)
+|  |__ bg1mobi.png (0 lines)
+|  |__ c.png (0 lines)
+|__ bg2.html (64 lines)
+|__ index.html (71 lines)
+|__ style.css (40 lines)

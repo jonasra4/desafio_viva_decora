@@ -32,7 +32,6 @@ class TreeNode:
             elif unity == 'GB':
                 self.size = 1000000000 * num
         except:
-            print(self.size, type(self.size))
             self.size = 0
         
 
