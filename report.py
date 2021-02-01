@@ -1,12 +1,8 @@
 import re
 import tree
 import requests
-import threading
 from tabulate import tabulate
-import concurrent.futures
 from bs4 import BeautifulSoup
-import time
-from random import randrange
 
 class Report:
     def __init__(self, project_name):
@@ -22,59 +18,56 @@ class Report:
         self.table_string = ''
         self.project_string = ''
 
-    def scraping_lines_size(self, navigation):
-        time.sleep(10)
-        new_url = self.url + navigation
-        page = requests.get(new_url)
+    def scraping_lines_size(self, node):
+        node.convert_to_extension()
+        page = requests.get(node.path)
 
         if page.ok:
             soup = BeautifulSoup(page.text, 'html.parser')
             lines_size = soup.find(class_='text-mono f6 flex-auto pr-3 flex-order-2 flex-md-order-1 mt-2 mt-md-0')
+            
             pattern = r"[0-9.]+[ ][A-Za-z]*"
 
             try:
                 regex_lines_size = re.findall(pattern, lines_size.text)
-                lines = int(regex_lines_size[0].split(' ')[0])
-                size = regex_lines_size[2]
-                return lines, size
+                node.lines = int(regex_lines_size[0].split(' ')[0])
+                node.size = regex_lines_size[2]
             except:
                 regex_lines_size = re.findall(pattern, lines_size.text)
-                size = regex_lines_size[0]
-                return 0, size
+                node.lines = 0
+                node.size = regex_lines_size[0]
+            
+            node.convert_size_to_bytes()
         else:
-            # print("tentando denovo {navigation}")
-            # time.sleep(10)
-            # self.scraping_lines_size(navigation)
             print(page.status_code, new_url)
-            return 0, 112312313
-
+            node.lines = 0
+            node.size = 0
+    
     def scraping_project(self, navigation, node):
         new_url = self.url + navigation
         current_node = node
-        # print(new_url)
         page = requests.get(new_url)
         
-        soup = BeautifulSoup(page.text, 'html.parser')
+        if page.ok:
+            soup = BeautifulSoup(page.text, 'html.parser')
+            all_lines = soup.find_all(class_='Box-row Box-row--focus-gray py-2 d-flex position-relative js-navigation-item')
 
-        all_lines = soup.find_all(class_='Box-row Box-row--focus-gray py-2 d-flex position-relative js-navigation-item')
+            for i in all_lines:
+                file_name = i.find(class_='js-navigation-open link-gray-dark').text
 
-        for i in all_lines:
-            nome = i.find(class_='js-navigation-open link-gray-dark').text
+                new_navigation = navigation + '/' + file_name
+                new_node = tree.TreeFile(file_name)
 
-            new_navigation = navigation + '/' + nome
-            new_node = tree.TreeNode(nome)
-
-            if i.find(class_='octicon-file-directory'):
-                new_node.path = new_url
-                current_node.add_child( new_node )
-                self.scraping_project(new_navigation,new_node)
-                # threading.Thread(target=self.scraping_project, args=(new_navigation,new_node, )).start()
-            else:
-                new_node.lines, new_node.size = 10, '13 Bytes'
-                new_node.convert_to_extension()
-                new_node.convert_to_bytes()
-                new_node.path = new_url+'/'+nome
-                current_node.add_child( new_node )
+                if i.find(class_='octicon-file-directory'):
+                    new_node.path = new_url
+                    current_node.add_child(new_node)
+                    self.scraping_project(new_navigation, new_node)
+                else:
+                    new_node.path = new_url+ '/' + file_name
+                    current_node.add_child(new_node)
+                    self.scraping_lines_size(new_node)    
+        else:
+            print(page.status_code, new_url)
 
         return node
 
@@ -91,41 +84,9 @@ class Report:
             for child in node.children:
                 self.structure_to_string(child) 
 
-    def print_arqs(self, node):        
-        
-        if node.extension:
-            page = requests.get(node.path)
-            # print(node.path)
-            if page.ok:
-                soup = BeautifulSoup(page.text, 'html.parser')
-                lines_size = soup.find(class_='text-mono f6 flex-auto pr-3 flex-order-2 flex-md-order-1 mt-2 mt-md-0')
-                pattern = r"[0-9.]+[ ][A-Za-z]*"
-
-                try:
-                    regex_lines_size = re.findall(pattern, lines_size.text)
-                    node.lines = int(regex_lines_size[0].split(' ')[0])
-                    node.size = regex_lines_size[2]
-                    node.convert_to_bytes()
-                except:
-                    regex_lines_size = re.findall(pattern, lines_size.text)
-                    node.lines = 0
-                    node.size = regex_lines_size[0]
-                    node.convert_to_bytes()
-
-            else:
-                print(page.status_code, node.path)
-                node.lines = 0
-                node.size = 0
-
-        if node.children:
-            for child in node.children:
-                # threading.Thread(target=self.print_arqs, args=(child, )).start()
-                self.print_arqs(child)
-
     def read_project(self):
-        root = tree.TreeNode(f'Project {self.project_name}')
+        root = tree.TreeFile(f'Project {self.project_name}')
         self.project_structure = self.scraping_project('', root )
-        self.print_arqs(self.project_structure)
 
     def count_total_lines_bytes(self):
         count_lines = 0
@@ -151,11 +112,13 @@ class Report:
                 self.count_total_lines_bytes_by_extension(child)
       
     def table_to_string(self):   
+        
+        ordered_table_by_lines = sorted(self.table.items(), key=lambda item: item[1][0], reverse = True)
 
         headers = ['Extension', 'Lines', 'Bytes']
         new_table = []
 
-        for key, value in self.table.items():
+        for key, value in ordered_table_by_lines:
             line_count = f'{value[0]} ({ int(100 * value[0] / self.total_lines)}%)'
             byte_count = f'{int(value[1])} ({ int(100 * value[1] / self.total_bytes)}%)'
 

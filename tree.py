@@ -1,4 +1,4 @@
-class TreeNode:
+class TreeFile:
     def __init__(self, data):
         self.data = data
         self.children = []
@@ -16,7 +16,7 @@ class TreeNode:
             p = p.parent
         return level
 
-    def convert_to_bytes(self):
+    def convert_size_to_bytes(self):
         try:
             num_unity = self.size.split(' ')
         
@@ -34,7 +34,6 @@ class TreeNode:
         except:
             self.size = 0
         
-
     def convert_to_extension(self):
         ext = self.data.split('.')
         if len(ext) >= 2 and ext[0]:

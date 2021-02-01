@@ -32,7 +32,5 @@ if __name__ == '__main__':
                 if not i.is_alive():
                     list_thread.remove(i)
 
-    print('All repositores finalizados')
-
 
 
