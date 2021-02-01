@@ -14,8 +14,8 @@ python main.py
 
 ## Considerações
 
-A lista de repositórios deve ser inserida no arquivo 'repositorios.txt'
+A lista de repositórios deve ser inserida no arquivo 'repositorios.txt'.
 
 Necessariamente cada repositório da lista deve existir no site github.com e ser público.
 
-As saidas geradas pelo programa serão salvas na pasta 'repositorios'
+As saidas geradas pelo programa serão salvas na pasta 'repositorios'.
